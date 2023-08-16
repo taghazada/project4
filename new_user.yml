@@ -1,0 +1,16 @@
+---
+- name: new_user
+  hosts: test.demo.oldbaku.net 
+  become: true
+
+  tasks:
+    - name: Create a new user
+      user:
+        name: tural
+        state: present
+        groups: wheel
+        shell: /bin/bash
+        password: "{{ 'mypassword' | password_hash('sha512', 'mypassword') }}"  
+
+
+
